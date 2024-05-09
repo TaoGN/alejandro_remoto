@@ -1,16 +1,24 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.Date;
-import logic.Cliente;
+import java.util.List;
 import java.util.Scanner;
+import logic.Cliente;
 
 /**
- * @author Aleja
+ * @author Alejandro García
  * La clase GestionClientes proporciona métodos para gestionar la creación de clientes.
  * Permite la creación de objetos Cliente con información ingresada por el usuario.
  */
-public class GestionClientes {
-	
+public class GestionClientes{
+    
+    private List<Cliente> clientes;
+
+    public GestionClientes() {
+        this.clientes = new ArrayList<>();
+    }
+    
     /**
      * Crea un nuevo cliente con la información ingresada por el usuario.
      *
@@ -30,7 +38,11 @@ public class GestionClientes {
         System.out.println("Por favor ingrese su dirección:");
         String direccion = scanner.nextLine();
         
-        return new Cliente(nombre, apellidos, new Date(), telefono, direccion, "");
+        Cliente nuevoCliente = new Cliente(nombre, apellidos, new Date(), telefono, direccion, "");
+
+        this.clientes.add(nuevoCliente);
+
+        return nuevoCliente;
     }
 
     /**
@@ -46,10 +58,14 @@ public class GestionClientes {
             System.out.println("Por favor ingrese su número de teléfono:");
             telefono = scanner.nextLine();
             
-            if (!esTelefonoValido(telefono)) {
-                System.out.println("Número de teléfono no válido, el teléfono ha de tener una longitud de 9 dígitos y empezar por 6, 7, 8 o 9. Por favor, inténtelo de nuevo.");
+            try {
+            	if (!esTelefonoValido(telefono)) {
+            		throw new TelefonoInvalidoException("Número de teléfono no válido, el teléfono ha de tener una longitud de 9 dígitos y empezar por 6, 7, 8 o 9. Por favor, inténtelo de nuevo.");
+            	}
+            }catch (TelefonoInvalidoException e) {
+            	System.out.println(e.getMessage());
             }
-        } while (!esTelefonoValido(telefono));
+        }while (!esTelefonoValido(telefono));
         
         return telefono;
     }
@@ -71,5 +87,11 @@ public class GestionClientes {
         }
 
         return true;
+    }
+    
+    private static class TelefonoInvalidoException extends Exception {
+        public TelefonoInvalidoException(String mensaje) {
+            super(mensaje);
+        }
     }
 }

@@ -10,7 +10,7 @@ import pago.PasarelaDePago;
 import ticket.Ticket;
 
 /**
- * @author Aleja
+ * @author Alejandro García
  * Clase que gestiona el pedido realizado por un cliente.
  */
 public class GestionPedido {
@@ -28,7 +28,7 @@ public class GestionPedido {
     public void realizarPedido() {
         System.out.println("Ha seleccionado realizar un pedido, para ello primero necesitamos conocer sus datos:");
         Cliente cliente = gestionClientes.crearCliente();
-        agregarCliente(cliente); 
+        asociarClientePedido(cliente); 
         seleccionarProductos();
     }
     /**
@@ -139,7 +139,7 @@ public class GestionPedido {
         Bebida bebidaSeleccionada = null;
         
         while (true) {
-        	 if (scanner.hasNext("[1-4]")) {       
+        	 if (scanner.hasNext("[1-5]")) {       
 		        int opcionBebida = scanner.nextInt();
 		        scanner.nextLine();
         
@@ -156,6 +156,8 @@ public class GestionPedido {
 		            case 4:
 		                bebidaSeleccionada = Bebida.MORETTI;
 		                break;
+		            case 5:
+		            	bebidaSeleccionada = Bebida.BATIDO;
 		        }
 		        break;
         	 } else {
@@ -194,11 +196,11 @@ public class GestionPedido {
     }
     
     /**
-     * Método para agregar un cliente al pedido.
+     * Método para asociar un cliente a un pedido.
      * 
      * @param cliente Cliente que realiza el pedido.
      */
-    public void agregarCliente(Cliente cliente) {
+    public void asociarClientePedido(Cliente cliente) {
         this.cliente = cliente;
     }
 }

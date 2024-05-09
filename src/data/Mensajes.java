@@ -4,7 +4,7 @@ import logic.Comida;
 import logic.Bebida;
 
 /**
- * @author Aleja
+ * @author Alejandro García
  * Clase que contiene métodos estáticos para mostrar mensajes en la consola.
  */
 public class Mensajes {
@@ -28,9 +28,19 @@ public class Mensajes {
      * Muestra por pantalla las opciones disponibles para el usuario.
      */
     public static void mensajeOpciones() {
-        System.out.println("Seleccione 1 para ver nuestras promociones.");
-        System.out.println("Seleccione 2 para ver información sobre nuestra pizzeria.");
+        System.out.println("Seleccione 1 para ver información sobre nuestra pizzeria.");
+        System.out.println("Seleccione 2 para ver nuestra carta de productos.");
         System.out.println("Seleccione 3 para realizar un pedido.");
+    }
+    
+    /**
+     * Muestra por pantalla las opciones de tarjeta disponibles que puede seleccionar el usuario.
+     */
+    public static void mensajeTipoTarjeta() {
+        System.out.println("Ha seleccionado pagar con tarjeta.");
+        System.out.println("Ingrese 3 si va a pagar con American Express.");
+        System.out.println("Ingrese 4 si va a pagar con Visa.");
+        System.out.println("Ingrese 5 si va a pagar con MasterCard.");
     }
 
     /**
@@ -57,12 +67,21 @@ public class Mensajes {
     }
 
     /**
-     * Muestra por pantalla la promoción actual de la pizzería.
+     * Muestra la carta de productos
      */
-    public static void promocion() {
-        System.out.println("\t\t\t Esta semana en Pizzeria Alessandro tenemos como promocion:");
-        System.out.println("\t\t\t Calzone + cualquier bebida por solo 14€");
-        System.out.println("\t\t\t ¡No deje escapar esta oferta!\n");
+    public static void carta() {
+        System.out.println("\nComida:\n");
+    	System.out.println(Comida.NAPOLITANA.getNombre() + ", Calorías: " + Comida.NAPOLITANA.getCalorias() + " Calorías" + ", Vegano: " + (Comida.NAPOLITANA.getVegano() ? "Sí" : "No") + ", Precio: " + Comida.NAPOLITANA.getPrecio() + "€");
+        System.out.println(Comida.CARBONARA.getNombre() + ", Calorías: " + Comida.CARBONARA.getCalorias() + " Calorías" + ", Vegano: " + (Comida.CARBONARA.getVegano() ? "Sí" : "No")  + ", Precio: " + Comida.CARBONARA.getPrecio() + "€");
+        System.out.println(Comida.FUGAZZA.getNombre() + ", Calorías: " + Comida.FUGAZZA.getCalorias() + " Calorías" + ", Vegano: " + (Comida.FUGAZZA.getVegano() ? "Sí" : "No")  + ", Precio: " + Comida.FUGAZZA.getPrecio() + "€");
+        System.out.println(Comida.CALZONE.getNombre() + ", Calorías: " + Comida.CALZONE.getCalorias() + " Calorías" + ", Vegano: " + (Comida.CALZONE.getVegano() ? "Sí" : "No")  + ", Precio: " + Comida.CALZONE.getPrecio() + "€");
+        System.out.println(Comida.PROSCIUTTO.getNombre() + ", Calorías: " + Comida.PROSCIUTTO.getCalorias() + " Calorías" + ", Vegano: " + (Comida.PROSCIUTTO.getVegano() ? "Sí" : "No")  + ", Precio: " + Comida.PROSCIUTTO.getPrecio() + "€");
+        System.out.println("\nBebida:\n");
+        System.out.println(Bebida.REFRESCO.getNombre() + ", Gaseoso: " + (Bebida.REFRESCO.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.REFRESCO.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.REFRESCO.getMedida() + ", Precio: " + Bebida.REFRESCO.getPrecio() + "€");
+        System.out.println(Bebida.AGUA.getNombre() + ", Gaseoso: " + (Bebida.AGUA.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.AGUA.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.AGUA.getMedida() + ", Precio: " + Bebida.AGUA.getPrecio() + "€");
+        System.out.println(Bebida.PERONI.getNombre() + ", Gaseoso: " + (Bebida.PERONI.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.PERONI.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.PERONI.getMedida() + ", Precio: " + Bebida.PERONI.getPrecio() + "€");
+        System.out.println(Bebida.MORETTI.getNombre() + ", Gaseoso: " + (Bebida.MORETTI.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.MORETTI.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.MORETTI.getMedida() + ", Precio: " + Bebida.MORETTI.getPrecio() + "€");
+        System.out.println(Bebida.BATIDO.getNombre() + ", Gaseoso: " + (Bebida.BATIDO.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.BATIDO.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.BATIDO.getMedida() + ", Precio: " + Bebida.BATIDO.getPrecio() + "€\n");
     }
 
     /**
@@ -70,11 +89,11 @@ public class Mensajes {
      */
     public static void mostrarOpcionesComida() {
         System.out.println("\nSelecciona entre una de nuestras opciones:\n");
-        System.out.println("Marque 1 para: " + Comida.NAPOLITANA.getNombre() + ", Precio: " + Comida.NAPOLITANA.getPrecio() + "€");
-        System.out.println("Marque 2 para: " + Comida.CARBONARA.getNombre() + ", Precio: " + Comida.CARBONARA.getPrecio() + "€");
-        System.out.println("Marque 3 para: " + Comida.FUGAZZA.getNombre() + ", Precio: " + Comida.FUGAZZA.getPrecio() + "€");
-        System.out.println("Marque 4 para: " + Comida.CALZONE.getNombre() + ", Precio: " + Comida.CALZONE.getPrecio() + "€");
-        System.out.println("Marque 5 para: " + Comida.PROSCIUTTO.getNombre() + ", Precio: " + Comida.PROSCIUTTO.getPrecio() + "€");
+        System.out.println("Marque 1 para: " + Comida.NAPOLITANA.getNombre() + ", Calorías: " + Comida.NAPOLITANA.getCalorias() + " Calorías" + ", Vegano: " + (Comida.NAPOLITANA.getVegano() ? "Sí" : "No") + ", Fecha de caducidad: " + Comida.NAPOLITANA.obtener_caducidad() + ", Precio: " + Comida.NAPOLITANA.getPrecio() + "€");
+        System.out.println("Marque 2 para: " + Comida.CARBONARA.getNombre() + ", Calorías: " + Comida.CARBONARA.getCalorias() + " Calorías" + ", Vegano: " + (Comida.CARBONARA.getVegano() ? "Sí" : "No") + ", Fecha de caducidad: " + Comida.CARBONARA.obtener_caducidad()  + ", Precio: " + Comida.CARBONARA.getPrecio() + "€");
+        System.out.println("Marque 3 para: " + Comida.FUGAZZA.getNombre() + ", Calorías: " + Comida.FUGAZZA.getCalorias() + " Calorías" + ", Vegano: " + (Comida.FUGAZZA.getVegano() ? "Sí" : "No") + ", Fecha de caducidad: " + Comida.FUGAZZA.obtener_caducidad()  + ", Precio: " + Comida.FUGAZZA.getPrecio() + "€");
+        System.out.println("Marque 4 para: " + Comida.CALZONE.getNombre() + ", Calorías: " + Comida.CALZONE.getCalorias() + " Calorías" + ", Vegano: " + (Comida.CALZONE.getVegano() ? "Sí" : "No") + ", Fecha de caducidad: " + Comida.CALZONE.obtener_caducidad()  + ", Precio: " + Comida.CALZONE.getPrecio() + "€");
+        System.out.println("Marque 5 para: " + Comida.PROSCIUTTO.getNombre() + ", Calorías: " + Comida.PROSCIUTTO.getCalorias() + " Calorías" + ", Vegano: " + (Comida.PROSCIUTTO.getVegano() ? "Sí" : "No") + ", Fecha de caducidad: " + Comida.PROSCIUTTO.obtener_caducidad()  + ", Precio: " + Comida.PROSCIUTTO.getPrecio() + "€");
     }
 
     /**
@@ -82,10 +101,11 @@ public class Mensajes {
      */
     public static void mostrarOpcionesBebida() {
         System.out.println("\nSeleccione una opción de bebida:");
-        System.out.println("1. " + Bebida.REFRESCO.getNombre() + ", Precio: " + Bebida.REFRESCO.getPrecio() + "€");
-        System.out.println("2. " + Bebida.AGUA.getNombre() + ", Precio: " + Bebida.AGUA.getPrecio() + "€");
-        System.out.println("3. " + Bebida.PERONI.getNombre() + ", Precio: " + Bebida.PERONI.getPrecio() + "€");
-        System.out.println("4. " + Bebida.MORETTI.getNombre() + ", Precio: " + Bebida.MORETTI.getPrecio() + "€");
+        System.out.println("1. " + Bebida.REFRESCO.getNombre() + ", Gaseoso: " + (Bebida.REFRESCO.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.REFRESCO.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.REFRESCO.getMedida()  + ", Fecha de caducidad: " + Bebida.REFRESCO.obtener_caducidad() + ", Precio: " + Bebida.REFRESCO.getPrecio() + "€");
+        System.out.println("2. " + Bebida.AGUA.getNombre() + ", Gaseoso: " + (Bebida.AGUA.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.AGUA.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.AGUA.getMedida()  + ", Fecha de caducidad: " + Bebida.AGUA.obtener_caducidad() + ", Precio: " + Bebida.AGUA.getPrecio() + "€");
+        System.out.println("3. " + Bebida.PERONI.getNombre() + ", Gaseoso: " + (Bebida.PERONI.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.PERONI.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.PERONI.getMedida()  + ", Fecha de caducidad: " + Bebida.PERONI.obtener_caducidad() + ", Precio: " + Bebida.PERONI.getPrecio() + "€");
+        System.out.println("4. " + Bebida.MORETTI.getNombre() + ", Gaseoso: " + (Bebida.MORETTI.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.MORETTI.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.MORETTI.getMedida()  + ", Fecha de caducidad: " + Bebida.MORETTI.obtener_caducidad() + ", Precio: " + Bebida.MORETTI.getPrecio() + "€");
+        System.out.println("5. " + Bebida.BATIDO.getNombre() + ", Gaseoso: " + (Bebida.BATIDO.getGaseoso() ? "Sí" : "No") + ", Lácteo: " + (Bebida.BATIDO.getLacteo() ? "Sí" : "No") + ", Medida: " + Bebida.BATIDO.getMedida()  + ", Fecha de caducidad: " + Bebida.BATIDO.obtener_caducidad() + ", Precio: " + Bebida.BATIDO.getPrecio() + "€");
     }
 
     /**

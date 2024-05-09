@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * @author Aleja
+ * @author Alejandro García
  * Clase para generar el ticket del pedido.
  */
 public class Ticket {

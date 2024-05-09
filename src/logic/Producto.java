@@ -2,8 +2,12 @@
  * 
  */
 package logic;
+
+import java.util.Calendar;
+import java.util.Date;
+
 /**
- * @author Aleja 
+ * @author Alejandro García 
  *
  */
 public abstract class Producto {
@@ -12,6 +16,8 @@ public abstract class Producto {
 	private String nombre;
 	private double precio;
 	private int cantidad;
+	private Date fecha_caducidad;
+	String estado;
 	// Constructores
 	/**
 	 * 
@@ -24,12 +30,14 @@ public abstract class Producto {
 	 * @param nombre
 	 * @param precioUnit
 	 * @param cantidad
+	 * @param fecha_caducidad
 	 */
-	public Producto(String nombre, double precio, int cantidad) {
+	public Producto(String nombre, double precio, int cantidad, Date fecha_caducidad) {
 
 		this.nombre = nombre;
 		this.precio = precio;
 		this.cantidad = cantidad;
+		this.fecha_caducidad = fecha_caducidad;
 	}
 
 	// Métodos Get and Set
@@ -82,4 +90,39 @@ public abstract class Producto {
 		this.cantidad = cantidad;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+    public Date getFecha_caducidad() {
+        return fecha_caducidad;
+    }
+    
+	/**
+	 * 
+	 * @param fecha de caducidad
+	 */
+    public void setFecha_caducidad(Date fecha_caducidad) {
+        this.fecha_caducidad = fecha_caducidad;
+    }
+    
+    public abstract Date obtener_caducidad();
+    
+    // Método para verificar la caducidad del producto
+    public String verificarCaducidad() {
+        Calendar fechaCaducidad = Calendar.getInstance();
+        fechaCaducidad.setTime(this.getFecha_caducidad());
+        Calendar hoy = Calendar.getInstance();
+        hoy.add(Calendar.DAY_OF_YEAR, 5); // Agrega 5 días a la fecha actual
+
+        if (fechaCaducidad.before(hoy)) {
+            this.setPrecio(this.getPrecio() * 0.7); // Aplica el descuento del 30%
+            return "OFERTA";
+        } else if (fechaCaducidad.before(Calendar.getInstance())) {
+            return "CADUCADO";
+        } else {
+            return "VÁLIDO";
+        }
+    }
+    
   }
