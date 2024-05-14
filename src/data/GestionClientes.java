@@ -1,10 +1,9 @@
 package data;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 import logic.Cliente;
+import database.ConexionBD;
 
 /**
  * @author Alejandro García
@@ -12,13 +11,13 @@ import logic.Cliente;
  * Permite la creación de objetos Cliente con información ingresada por el usuario.
  */
 public class GestionClientes{
-    
-    private List<Cliente> clientes;
+	
+    private ConexionBD conexionBD;
 
     public GestionClientes() {
-        this.clientes = new ArrayList<>();
+        conexionBD = new ConexionBD();
     }
-    
+	
     /**
      * Crea un nuevo cliente con la información ingresada por el usuario.
      *
@@ -37,11 +36,17 @@ public class GestionClientes{
 
         System.out.println("Por favor ingrese su dirección:");
         String direccion = scanner.nextLine();
+                
+        // Verificar si el cliente ya existe en la base de datos
+        Cliente clienteExistente = conexionBD.consultarClientePorTelefono(telefono);
+        if (clienteExistente != null) {
+            System.out.println("Ya existe un cliente registrado con el número de teléfono proporcionado.");
+            return clienteExistente;
+        }
         
-        Cliente nuevoCliente = new Cliente(nombre, apellidos, new Date(), telefono, direccion, "");
-
-        this.clientes.add(nuevoCliente);
-
+        Cliente nuevoCliente = new Cliente(0, nombre, apellidos, new Date(), telefono, direccion, "");
+        conexionBD.insertarCliente(nuevoCliente);
+        
         return nuevoCliente;
     }
 

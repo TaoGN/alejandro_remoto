@@ -2,12 +2,16 @@ package data;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
+import data.Mensajes;
 import java.util.Scanner;
 import logic.Bebida;
 import logic.Cliente;
 import logic.Comida;
 import pago.PasarelaDePago;
 import ticket.Ticket;
+import database.ConexionBD;
+
 
 /**
  * @author Alejandro García
@@ -17,22 +21,65 @@ public class GestionPedido {
     
     private Cliente cliente;
     private GestionClientes gestionClientes;
+    private ConexionBD conexionBD;
     
     /**
      * Constructor por defecto de la clase GestionPedido.
      */
-    public GestionPedido() {
+    public GestionPedido(ConexionBD conexionBD) {
+        this.conexionBD = conexionBD;
     	gestionClientes = new GestionClientes();
     }
     
+    /**
+     * Método para realizar un pedido.
+     */
     public void realizarPedido() {
-        System.out.println("Ha seleccionado realizar un pedido, para ello primero necesitamos conocer sus datos:");
-        Cliente cliente = gestionClientes.crearCliente();
+    	Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            Mensajes.mensajeCliente();
+            try {
+                int opcion = scanner.nextInt();
+                scanner.nextLine();
+        
+                if (opcion == 1) {
+                    // Proceso para nuevo cliente
+                    cliente = gestionClientes.crearCliente();
+                    break;
+                } else if (opcion == 2) {
+                    // Proceso para cliente existente
+                    System.out.println("Por favor, ingresa tu número de teléfono:");
+                    String telefono = scanner.nextLine();
+                    cliente = conexionBD.consultarClientePorTelefono(telefono);
+                    if (cliente == null) {
+                        System.out.println("Lo siento, no te hemos encontrado en nuestro sistema.");
+                        System.out.println("¿Deseas registrarte como un nuevo cliente? (S/N)");
+                        String respuesta = scanner.nextLine();
+                        if (respuesta.equalsIgnoreCase("S")) {
+                            cliente = gestionClientes.crearCliente();
+                        } else {
+                            System.out.println("Gracias por visitarnos.");
+                            return;
+                        }
+                    }
+                    break;
+                } else {
+                    // Opción no válida
+                    System.out.println("¡Opción seleccionada no válida! Por favor elija una de las opciones mostradas.\n");
+                }
+            } catch (InputMismatchException e) {
+                // Captura la excepción si se ingresa un valor que no es un número
+                System.out.println("¡Opción seleccionada no válida! Por favor ingrese un número válido.\n");
+                scanner.nextLine();
+            }
+        }
+        
         asociarClientePedido(cliente); 
         seleccionarProductos();
     }
     /**
-     * Método para realizar un pedido.
+     * Método para seleccionar los productos.
      */
     public void seleccionarProductos() {
         Scanner scanner = new Scanner(System.in);
@@ -59,7 +106,7 @@ public class GestionPedido {
         
         Ticket.generarDocumento(cliente, comidaSeleccionada, cantidadComida, bebidaSeleccionada, cantidadBebida, precioComida + precioBebida, nombreArchivo);
                 
-        scanner.close();  
+       //scanner.close();  
     }
 
     /**

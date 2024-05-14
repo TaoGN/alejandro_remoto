@@ -33,7 +33,6 @@ public abstract class Producto {
 	 * @param fecha_caducidad
 	 */
 	public Producto(String nombre, double precio, int cantidad, Date fecha_caducidad) {
-
 		this.nombre = nombre;
 		this.precio = precio;
 		this.cantidad = cantidad;

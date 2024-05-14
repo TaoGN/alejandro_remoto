@@ -2,15 +2,18 @@
  * 
  */
 package logic;
+
 import java.util.Date;
+import java.io.Serializable;
 
 /**
- * @author Aleja 
+ * @author Alejandro García
  *
  */
-public class Cliente {
+public class Cliente implements Serializable {
 
 	// Atributos
+	private int id;
 	private String nombre;
 	private String apellidos;
 	private Date fechaDeAlta;
@@ -29,6 +32,7 @@ public class Cliente {
 	/**
 	 * Constructor clase producto con 6 parámetros
 	 * 
+	 * @param id
 	 * @param nombre
 	 * @param apellidos
 	 * @param fechaDeAlta
@@ -36,17 +40,34 @@ public class Cliente {
 	 * @param direccion
 	 * @param historial
 	 */
-	public Cliente(String nombre, String apellidos, Date fechaDeAlta, String telefono, String direccion, String historial) {
-		 this.nombre = nombre.toLowerCase();
-		 this.apellidos = apellidos.toUpperCase();
-		 this.fechaDeAlta = (fechaDeAlta != null) ? fechaDeAlta : new Date();
-		 this.telefono = telefono;
-		 this.direccion = direccion;
-		 this.historial = "";
+	public Cliente(int id, String nombre, String apellidos, Date fechaDeAlta, String telefono, String direccion, String historial) {
+		this.id = id; 
+		this.nombre = nombre.toLowerCase();
+		this.apellidos = apellidos.toUpperCase();
+		this.fechaDeAlta = (fechaDeAlta != null) ? fechaDeAlta : new Date();
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.historial = "";
 	}
 
 	// Métodos Get and Set
 
+	/**
+	 * 
+	 * @return
+	 */
+    public int getId() {
+        return this.id;
+    }
+    
+	/**
+	 * 
+	 * @param id
+	 */
+    public void setId(int id) {
+        this.id = id;
+    }
+	
 	/**
 	 * 
 	 * @return
@@ -91,7 +112,7 @@ public class Cliente {
 	 * 
 	 * @param fechaDeAlta
 	 */
-	public void setfechaDeAlta(Date fechaDeAlta) {
+	public void setFechaDeAlta(Date fechaDeAlta) {
 		this.fechaDeAlta = fechaDeAlta;
 	}
 

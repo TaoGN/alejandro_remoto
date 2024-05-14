@@ -23,14 +23,24 @@ public class Mensajes {
     public static void mensajeFin() {
         System.out.println("\n\tGracias por su visita\nEsperamos que disfrute de su elección\n\t   I.V.A. Incluido");
     }
+    
+    /**
+     * Muestra por pantalla las opciones para que el cliente elija si es un nuevo cliente o no,
+     * de esta manera guardará el cliente el la BD o no.
+     */
+    public static void mensajeCliente() {
+    	System.out.println("Ha seleccionado realizar un pedido:\n");
+    	System.out.println("¿Eres un nuevo cliente o has realizado algún pedido anteriormente?");
+    	System.out.println("- Seleccione 1. Si eres nuevo cliente. \n- Seleccione 2. Si ya has realizado algún pedido anteriormente.");
+    }
 
     /**
      * Muestra por pantalla las opciones disponibles para el usuario.
      */
     public static void mensajeOpciones() {
-        System.out.println("Seleccione 1 para ver información sobre nuestra pizzeria.");
-        System.out.println("Seleccione 2 para ver nuestra carta de productos.");
-        System.out.println("Seleccione 3 para realizar un pedido.");
+        System.out.println("- Seleccione 1 para ver información sobre nuestra pizzeria.");
+        System.out.println("- Seleccione 2 para ver nuestra carta de productos.");
+        System.out.println("- Seleccione 3 para realizar un pedido.");
     }
     
     /**
@@ -38,9 +48,9 @@ public class Mensajes {
      */
     public static void mensajeTipoTarjeta() {
         System.out.println("Ha seleccionado pagar con tarjeta.");
-        System.out.println("Ingrese 3 si va a pagar con American Express.");
-        System.out.println("Ingrese 4 si va a pagar con Visa.");
-        System.out.println("Ingrese 5 si va a pagar con MasterCard.");
+        System.out.println("- Ingrese 3 si va a pagar con American Express.");
+        System.out.println("- Ingrese 4 si va a pagar con Visa.");
+        System.out.println("- Ingrese 5 si va a pagar con MasterCard.");
     }
 
     /**
